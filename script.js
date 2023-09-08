@@ -11,10 +11,12 @@ function getComputerChoice() {
     return item;
 }
 
-function playerSelection() {
+
+function getPlayerSelection() {
     let input = prompt("Please make your choice between Rock, Paper or Scissors").toLowerCase()
     return input
 }
+
 
 let computerChoice = null;
 let playerChoice = null;
@@ -25,36 +27,40 @@ let playerScore = 0;
 function playRound(computerChoice,playerChoice) {
 
     computerChoice = getComputerChoice();
-    playerChoice = playerSelection();
+    playerChoice = getPlayerSelection();
     
     if (computerChoice == "rock" && playerChoice == "scissors") {
-        computerScore++;
-        return "You Lose! Rock beats Scissors"
+        console.log("You Lose! Rock beats Scissors")
+        return computerScore++;
     } else if (computerChoice == "scissors" && playerChoice == "rock") {
-        playerScore++;
-        return "You Win! Rock beats Scissors"
+        console.log("You Win! Rock beats Scissors")
+        return playerScore++;
     } else if (computerChoice == "rock" && playerChoice == "paper") {
-        playerScore++;
-        return "You Win! Paper beats Rock"
+        console.log("You Win! Paper beats Rock")
+        return playerScore++;
     } else if (computerChoice == "paper" && playerChoice == "rock") {
-        computerScore++;
-        return "You Lose! Paper beats Rock"
+        console.log("You Lose! Paper beats Rock")
+        return computerScore++;
     } else if (computerChoice == "scissors" && playerChoice == "paper") {
-        computerScore++;
-        return "You Lose! Scissors beats Paper"
+        console.log("You Lose! Scissors beats Paper")
+        return computerScore++;
     } else if (computerChoice == "paper" && playerChoice == "scissors") {
-        playerScore++;
-        return "You Win! Scissors beats Paper"
+        console.log("You Win! Scissors beats Paper")
+        return playerScore++;
     } else {
-        return "It is a draw!"
+        console.log("It is a draw!")
     }
 }
 
 function game() {
-    for (let i = 0; i < 4; i++) {
-        playRound(computerChoice,playerChoice)
-        console.log(computerScore)
-        console.log(playerScore)
+    while (true ) {
+        playRound()
+        console.log("Comp: " + computerScore)
+        console.log("Player: " + playerScore)
+
+        if (computerScore >= 3 || playerScore >= 3) {
+            break; 
+        }
     }
 
     if (computerScore > playerScore) {
