@@ -1,10 +1,7 @@
 function getComputerChoice() {
     
     const choiceOptions = ["Rock", "Paper", "Scissors"];
-    // get random index value
     const randomIndex = Math.floor(Math.random() * choiceOptions.length);
-
-    // get random item
     const item = choiceOptions[randomIndex].toLowerCase();
 
     return item;
@@ -22,13 +19,14 @@ let playerSelection;
 function playRound(computerChoice,playerChoice) {
 
     computerChoice = getComputerChoice();
+
     playerChoice = playerSelection;
-   
+
     if (computerChoice == "rock" && playerChoice == "scissors") {
         roundResult.textContent = "You Lose! Rock beats Scissors";
         computerScore++;
         compScore.textContent = "Computer: " + computerScore;
-        return computerScore;
+        return computerScore;     
     } else if (computerChoice == "scissors" && playerChoice == "rock") {
         roundResult.textContent = "You Win! Rock beats Scissors";
         playerScore++;
@@ -53,20 +51,9 @@ function playRound(computerChoice,playerChoice) {
         roundResult.textContent = "You Win! Scissors beats Paper";
         playerScore++;
         humanScore.textContent = "Player: " + playerScore;
-        return playerScore++
+        return playerScore
     } else {
         roundResult.textContent = "It is a draw!";
-    }
-}
-
-function game() {
-    playRound()
-    if (computerScore >= 3 || playerScore >= 3) {
-        if (computerScore > playerScore) {
-            return roundResult.textContent = "You lose!";
-        } else {
-            return roundResult.textContent = "You won!";
-        }
     }
 }
 
@@ -83,7 +70,15 @@ buttons.forEach((button) => {
       
         playerSelection = e.target.id;
 
-        game()
+        if (computerScore < 4 || playerScore < 4) {
+            if (computerScore == 3 || playerScore == 3) {
+                if (computerScore > playerScore) {
+                    return alert("You lose!");
+                } else {
+                    return alert("You won!");
+                }
+            } else playRound()
+        } else return
 
     });
   });
